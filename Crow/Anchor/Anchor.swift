@@ -113,28 +113,21 @@ public struct PositionAnchor: Anchor {
     }
 }
 
-public struct WidthAnchor: Anchor {
+public struct LengthAnchor: Anchor {
     public typealias ConstantType = FloatConstant
 
-    public static let instance = WidthAnchor()
+    public static let width = LengthAnchor(attributes: [.width])
+    public static let height = LengthAnchor(attributes: [.height])
 
-    public var attributes: [NSLayoutConstraint.Attribute] {
-        return [.width]
+    public let attributes: [NSLayoutConstraint.Attribute]
+
+    private init(attributes: [NSLayoutConstraint.Attribute]) {
+        self.attributes = attributes
     }
 
-    private init() {}
-}
-
-public struct HeightAnchor: Anchor {
-    public typealias ConstantType = FloatConstant
-
-    public static let instance = HeightAnchor()
-
-    public var attributes: [NSLayoutConstraint.Attribute] {
-        return [.height]
+    public static func + (lhs: LengthAnchor, rhs: LengthAnchor) -> LengthAnchor {
+        return LengthAnchor(attributes: lhs.attributes + rhs.attributes)
     }
-
-    private init() {}
 }
 
 public struct SizeAnchor: Anchor {

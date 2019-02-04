@@ -64,21 +64,16 @@ extension PositionAnchorHolder {
     }
 }
 
-public protocol WidthAnchorHolder: AnchorHolder {
+public protocol LengthAnchorHolder: AnchorHolder {
 }
 
-extension WidthAnchorHolder {
-    public var width: Item<WidthAnchor> {
-        return Item(view: view, anchor: .instance)
+extension LengthAnchorHolder {
+    public var width: Item<LengthAnchor> {
+        return Item(view: view, anchor: .width)
     }
-}
 
-public protocol HeightAnchorHolder: AnchorHolder {
-}
-
-extension HeightAnchorHolder {
-    public var height: Item<HeightAnchor> {
-        return Item(view: view, anchor: .instance)
+    public var height: Item<LengthAnchor> {
+        return Item(view: view, anchor: .height)
     }
 }
 

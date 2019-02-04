@@ -48,7 +48,6 @@ public class Crow {
 extension Crow: HorizontalAnchorHolder {}
 extension Crow: VerticalAnchorHolder {}
 extension Crow: PositionAnchorHolder {}
-extension Crow: WidthAnchorHolder {}
-extension Crow: HeightAnchorHolder {}
+extension Crow: LengthAnchorHolder {}
 extension Crow: SizeAnchorHolder {}
 extension Crow: EdgeAnchorHolder {}
