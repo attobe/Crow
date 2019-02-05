@@ -10,6 +10,7 @@ public struct SingleConstraint<AnchorType: Anchor>: Constraint {
     public let multiplier: CGFloat
     public let constant: ConstantType
     public let toItem: ItemType?
+    public let priority: UILayoutPriority
 
     public init(left l: ConstraintExpression<AnchorType>,
                 relation: NSLayoutConstraint.Relation,
@@ -44,12 +45,18 @@ public struct SingleConstraint<AnchorType: Anchor>: Constraint {
                 relation: NSLayoutConstraint.Relation,
                 multiplier: CGFloat,
                 constant: ConstantType,
-                toItem: ItemType?) {
+                toItem: ItemType?,
+                priority: UILayoutPriority = .required) {
         self.item = item
         self.relation = relation
         self.multiplier = multiplier
         self.constant = constant
         self.toItem = toItem
+        self.priority = priority
+    }
+
+    public func with(priority: UILayoutPriority) -> SingleConstraint {
+        return SingleConstraint(item: item, relation: relation, multiplier: multiplier, constant: constant, toItem: toItem, priority: priority)
     }
 
     public func build() -> [NSLayoutConstraint] {
@@ -58,13 +65,15 @@ public struct SingleConstraint<AnchorType: Anchor>: Constraint {
         return attributedConstants.enumerated().map { offset, attributedConstant -> NSLayoutConstraint in
             let toView = toItem?.view
             let toAttribute = toAttributes?[offset]
-            return NSLayoutConstraint(item: item.view,
-                                      attribute: attributedConstant.attribute,
-                                      relatedBy: relation,
-                                      toItem: toView,
-                                      attribute: toAttribute ?? attributedConstant.attribute,
-                                      multiplier: multiplier,
-                                      constant: attributedConstant.constant)
+            let constraint = NSLayoutConstraint(item: item.view,
+                                                attribute: attributedConstant.attribute,
+                                                relatedBy: relation,
+                                                toItem: toView,
+                                                attribute: toAttribute ?? attributedConstant.attribute,
+                                                multiplier: multiplier,
+                                                constant: attributedConstant.constant)
+            constraint.priority = priority
+            return constraint
         }
     }
 }

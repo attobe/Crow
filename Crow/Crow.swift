@@ -35,13 +35,7 @@ public class Crow {
         if let view = view as? UIView {
             view.translatesAutoresizingMaskIntoConstraints = enablesAutoResizingMaskTranslation
         }
-
-        let constraints = build()
-        constraints.forEach { constraint in
-            constraint.isActive = true
-        }
-
-        return constraints
+        return constraint.activate()
     }
 }
 
