@@ -4,6 +4,10 @@ import UIKit
 public class CollectionConstraint: Constraint {
     public private(set) var constraints: [Constraint] = []
 
+    public var description: String {
+        return constraints.map { $0.description }.joined(separator: " && ")
+    }
+
     public convenience init() {
         self.init(constraints: [])
     }

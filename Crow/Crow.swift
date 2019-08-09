@@ -2,12 +2,11 @@ import Foundation
 import UIKit
 
 public class Crow {
-    public let view: Any
+    public let view: AnyObject
     public private(set) var enablesAutoResizingMaskTranslation = false
+    public let constraints = CollectionConstraint()
 
-    private let constraint = CollectionConstraint()
-
-    public init(view: Any) {
+    public init(view: AnyObject) {
         self.view = view
     }
 
@@ -17,17 +16,17 @@ public class Crow {
     }
 
     public func expr(_ block: (Crow) -> Constraint) -> Self {
-        constraint.append(block(self))
+        constraints.append(block(self))
         return self
     }
 
-    public func expr(with view: Any, _ block: (Crow, Crow) -> Constraint) -> Self {
-        constraint.append(block(self, Crow(view: view)))
+    public func expr(with view: AnyObject, _ block: (Crow, Crow) -> Constraint) -> Self {
+        constraints.append(block(self, Crow(view: view)))
         return self
     }
 
     public func build() -> [NSLayoutConstraint] {
-        return constraint.build()
+        return constraints.build()
     }
 
     @discardableResult
@@ -35,13 +34,13 @@ public class Crow {
         if let view = view as? UIView {
             view.translatesAutoresizingMaskIntoConstraints = enablesAutoResizingMaskTranslation
         }
-        return constraint.activate()
+        return constraints.activate()
     }
 }
 
 extension Crow: HorizontalAnchorHolder {}
 extension Crow: VerticalAnchorHolder {}
-extension Crow: PositionAnchorHolder {}
+extension Crow: PositionalAnchorHolder {}
 extension Crow: LengthAnchorHolder {}
 extension Crow: SizeAnchorHolder {}
 extension Crow: EdgeAnchorHolder {}

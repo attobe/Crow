@@ -1,34 +1,25 @@
-//
-//  CrowTests.swift
-//  CrowTests
-//
-//  Created by 戸部敦 on 2019/01/30.
-//  Copyright © 2019年 TownWiFi Inc. All rights reserved.
-//
-
 import XCTest
 @testable import Crow
 
 class CrowTests: XCTestCase {
 
-    override func setUp() {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
-    }
-
-    override func tearDown() {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
-    }
-
     func testExample() {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
-    }
-
-    func testPerformanceExample() {
-        // This is an example of a performance test case.
-        self.measure {
-            // Put the code you want to measure the time of here.
+        let view = UIView()
+        let subview = UIView()
+        view.addSubview(subview)
+        subview.crowed { crow in
+            crow.edge <= view.crow.edge - 1.0
+                && crow.edge == view.crow.edge - 2.0
         }
-    }
 
+        print((subview.crow.edge == view.crow.edge - 2.0).description)
+
+        view.bounds.size = CGSize(width: 10.0, height: 10.0)
+        subview.bounds = CGRect(x: 5.0, y: 5.0, width: 0.0, height: 0.0)
+        view.setNeedsLayout()
+        view.layoutIfNeeded()
+
+        print(view.bounds.size)
+        print(subview.frame.origin, subview.frame.size)
+    }
 }

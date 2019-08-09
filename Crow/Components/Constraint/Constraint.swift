@@ -1,7 +1,7 @@
 import Foundation
 import UIKit
 
-public protocol Constraint {
+public protocol Constraint: CustomStringConvertible {
     func build() -> [NSLayoutConstraint]
 }
 
