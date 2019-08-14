@@ -1,7 +1,7 @@
 import Foundation
 import UIKit
 
-public class Crow {
+public class Crow: AnchorHolder {
     public let view: AnyObject
     public private(set) var enablesAutoResizingMaskTranslation = false
     public let constraints = CollectionConstraint()
@@ -37,10 +37,3 @@ public class Crow {
         return constraints.activate()
     }
 }
-
-extension Crow: HorizontalAnchorHolder {}
-extension Crow: VerticalAnchorHolder {}
-extension Crow: PositionalAnchorHolder {}
-extension Crow: LengthAnchorHolder {}
-extension Crow: SizeAnchorHolder {}
-extension Crow: EdgeAnchorHolder {}

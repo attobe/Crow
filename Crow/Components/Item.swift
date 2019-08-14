@@ -18,146 +18,104 @@ public struct Item<AnchorType: Anchor>: CustomStringConvertible {
     }
 }
 
-extension Item where AnchorType == HorizontalAnchor {
-    public var left: Item<ListAnchor<HorizontalAnchor>> {
-        return Item<ListAnchor<HorizontalAnchor>>(view: view, anchor: anchor + HorizontalAnchor.left)
+extension Item where AnchorType.ConstantType == PointConstant {
+    public var top: Item<PairAnchor<AnchorType, VerticalAnchor>> {
+        return Item<PairAnchor<AnchorType, VerticalAnchor>>(
+            view: view, anchor: PairAnchor(first: anchor, second: .top)
+        )
     }
 
-    public var leading: Item<ListAnchor<HorizontalAnchor>> {
-        return Item<ListAnchor<HorizontalAnchor>>(view: view, anchor: anchor + HorizontalAnchor.leading)
+    public var bottom: Item<PairAnchor<AnchorType, VerticalAnchor>> {
+        return Item<PairAnchor<AnchorType, VerticalAnchor>>(
+            view: view, anchor: PairAnchor(first: anchor, second: .bottom)
+        )
     }
 
-    public var right: Item<ListAnchor<HorizontalAnchor>> {
-        return Item<ListAnchor<HorizontalAnchor>>(view: view, anchor: anchor + HorizontalAnchor.right)
+    public var centerY: Item<PairAnchor<AnchorType, VerticalAnchor>> {
+        return Item<PairAnchor<AnchorType, VerticalAnchor>>(
+            view: view, anchor: PairAnchor(first: anchor, second: .centerY)
+        )
     }
 
-    public var trailing: Item<ListAnchor<HorizontalAnchor>> {
-        return Item<ListAnchor<HorizontalAnchor>>(view: view, anchor: anchor + HorizontalAnchor.trailing)
+    public var firstBaseline: Item<PairAnchor<AnchorType, VerticalAnchor>> {
+        return Item<PairAnchor<AnchorType, VerticalAnchor>>(
+            view: view, anchor: PairAnchor(first: anchor, second: .firstBaseline)
+        )
     }
 
-    public var centerX: Item<ListAnchor<HorizontalAnchor>> {
-        return Item<ListAnchor<HorizontalAnchor>>(view: view, anchor: anchor + HorizontalAnchor.centerX)
+    public var lastBaseline: Item<PairAnchor<AnchorType, VerticalAnchor>> {
+        return Item<PairAnchor<AnchorType, VerticalAnchor>>(
+            view: view, anchor: PairAnchor(first: anchor, second: .lastBaseline)
+        )
     }
 
-    public var top: Item<PositionalAnchor> {
-        return Item<PositionalAnchor>(view: view, anchor: anchor + VerticalAnchor.top)
+    public var left: Item<PairAnchor<AnchorType, HorizontalAnchor>> {
+        return Item<PairAnchor<AnchorType, HorizontalAnchor>>(
+            view: view, anchor: PairAnchor(first: anchor, second: .left)
+        )
     }
 
-    public var bottom: Item<PositionalAnchor> {
-        return Item<PositionalAnchor>(view: view, anchor: anchor + VerticalAnchor.bottom)
+    public var leading: Item<PairAnchor<AnchorType, HorizontalAnchor>> {
+        return Item<PairAnchor<AnchorType, HorizontalAnchor>>(
+            view: view, anchor: PairAnchor(first: anchor, second: .leading)
+        )
     }
 
-    public var centerY: Item<PositionalAnchor> {
-        return Item<PositionalAnchor>(view: view, anchor: anchor + VerticalAnchor.centerY)
+    public var right: Item<PairAnchor<AnchorType, HorizontalAnchor>> {
+        return Item<PairAnchor<AnchorType, HorizontalAnchor>>(
+            view: view, anchor: PairAnchor(first: anchor, second: .right)
+        )
     }
 
-    public var firstBaseline: Item<PositionalAnchor> {
-        return Item<PositionalAnchor>(view: view, anchor: anchor + VerticalAnchor.firstBaseline)
+    public var trailing: Item<PairAnchor<AnchorType, HorizontalAnchor>> {
+        return Item<PairAnchor<AnchorType, HorizontalAnchor>>(
+            view: view, anchor: PairAnchor(first: anchor, second: .trailing)
+        )
     }
 
-    public var lastBaseline: Item<PositionalAnchor> {
-        return Item<PositionalAnchor>(view: view, anchor: anchor + VerticalAnchor.lastBaseline)
-    }
-}
-
-extension Item where AnchorType == VerticalAnchor {
-    public var top: Item<ListAnchor<VerticalAnchor>> {
-        return Item<ListAnchor<VerticalAnchor>>(view: view, anchor: anchor + VerticalAnchor.top)
-    }
-
-    public var bottom: Item<ListAnchor<VerticalAnchor>> {
-        return Item<ListAnchor<VerticalAnchor>>(view: view, anchor: anchor + VerticalAnchor.bottom)
-    }
-
-    public var centerY: Item<ListAnchor<VerticalAnchor>> {
-        return Item<ListAnchor<VerticalAnchor>>(view: view, anchor: anchor + VerticalAnchor.centerY)
-    }
-
-    public var firstBaseline: Item<ListAnchor<VerticalAnchor>> {
-        return Item<ListAnchor<VerticalAnchor>>(view: view, anchor: anchor + VerticalAnchor.firstBaseline)
-    }
-
-    public var lastBaseline: Item<ListAnchor<VerticalAnchor>> {
-        return Item<ListAnchor<VerticalAnchor>>(view: view, anchor: anchor + VerticalAnchor.lastBaseline)
-    }
-
-    public var left: Item<PositionalAnchor> {
-        return Item<PositionalAnchor>(view: view, anchor: anchor + HorizontalAnchor.left)
-    }
-
-    public var leading: Item<PositionalAnchor> {
-        return Item<PositionalAnchor>(view: view, anchor: anchor + HorizontalAnchor.leading)
-    }
-
-    public var right: Item<PositionalAnchor> {
-        return Item<PositionalAnchor>(view: view, anchor: anchor + HorizontalAnchor.right)
-    }
-
-    public var trailing: Item<PositionalAnchor> {
-        return Item<PositionalAnchor>(view: view, anchor: anchor + HorizontalAnchor.trailing)
-    }
-
-    public var centerX: Item<PositionalAnchor> {
-        return Item<PositionalAnchor>(view: view, anchor: anchor + HorizontalAnchor.centerX)
+    public var centerX: Item<PairAnchor<AnchorType, HorizontalAnchor>> {
+        return Item<PairAnchor<AnchorType, HorizontalAnchor>>(
+            view: view, anchor: PairAnchor(first: anchor, second: .centerX)
+        )
     }
 }
 
-extension Item where AnchorType == PositionalAnchor {
-    public var left: Item<PositionalAnchor> {
-        return Item(view: view, anchor: anchor + HorizontalAnchor.left)
+extension Item where AnchorType.ConstantType == SizeConstant {
+    public var width: Item<PairAnchor<AnchorType, LengthAnchor>> {
+        return Item<PairAnchor<AnchorType, LengthAnchor>>(
+            view: view, anchor: PairAnchor(first: anchor, second: .width)
+        )
     }
 
-    public var leading: Item<PositionalAnchor> {
-        return Item(view: view, anchor: anchor + HorizontalAnchor.leading)
-    }
-
-    public var right: Item<PositionalAnchor> {
-        return Item(view: view, anchor: anchor + HorizontalAnchor.right)
-    }
-
-    public var trailing: Item<PositionalAnchor> {
-        return Item(view: view, anchor: anchor + HorizontalAnchor.trailing)
-    }
-
-    public var centerX: Item<PositionalAnchor> {
-        return Item(view: view, anchor: anchor + HorizontalAnchor.centerX)
-    }
-
-    public var top: Item<PositionalAnchor> {
-        return Item(view: view, anchor: anchor + VerticalAnchor.top)
-    }
-
-    public var bottom: Item<PositionalAnchor> {
-        return Item(view: view, anchor: anchor + VerticalAnchor.bottom)
-    }
-
-    public var centerY: Item<PositionalAnchor> {
-        return Item(view: view, anchor: anchor + VerticalAnchor.centerY)
-    }
-
-    public var firstBaseline: Item<PositionalAnchor> {
-        return Item(view: view, anchor: anchor + VerticalAnchor.firstBaseline)
-    }
-
-    public var lastBaseline: Item<PositionalAnchor> {
-        return Item(view: view, anchor: anchor + VerticalAnchor.lastBaseline)
+    public var height: Item<PairAnchor<AnchorType, LengthAnchor>> {
+        return Item<PairAnchor<AnchorType, LengthAnchor>>(
+            view: view, anchor: PairAnchor(first: anchor, second: .height)
+        )
     }
 }
 
-extension Item where AnchorType: DirectionAnchor {
-    public var north: Item<EdgeAnchor> {
-        return Item<EdgeAnchor>(view: view, anchor: anchor + EdgeAnchor.north)
+extension Item where AnchorType.ConstantType == InsetsConstant {
+    public var east: Item<PairAnchor<AnchorType, EastAnchor>> {
+        return Item<PairAnchor<AnchorType, EastAnchor>>(
+            view: view, anchor: PairAnchor(first: anchor, second: .instance)
+        )
     }
 
-    public var south: Item<EdgeAnchor> {
-        return Item<EdgeAnchor>(view: view, anchor: anchor + EdgeAnchor.south)
+    public var west: Item<PairAnchor<AnchorType, WestAnchor>> {
+        return Item<PairAnchor<AnchorType, WestAnchor>>(
+            view: view, anchor: PairAnchor(first: anchor, second: .instance)
+        )
     }
 
-    public var east: Item<EdgeAnchor> {
-        return Item<EdgeAnchor>(view: view, anchor: anchor + EdgeAnchor.east)
+    public var north: Item<PairAnchor<AnchorType, NorthAnchor>> {
+        return Item<PairAnchor<AnchorType, NorthAnchor>>(
+            view: view, anchor: PairAnchor(first: anchor, second: .instance)
+        )
     }
 
-    public var west: Item<EdgeAnchor> {
-        return Item<EdgeAnchor>(view: view, anchor: anchor + EdgeAnchor.west)
+    public var south: Item<PairAnchor<AnchorType, SouthAnchor>> {
+        return Item<PairAnchor<AnchorType, SouthAnchor>>(
+            view: view, anchor: PairAnchor(first: anchor, second: .instance)
+        )
     }
 }
