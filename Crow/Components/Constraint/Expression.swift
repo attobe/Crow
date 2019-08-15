@@ -141,3 +141,18 @@ public func <= <C1: ExpressionConvertible, C2: ExpressionConvertible>(lhs: C1, r
     let right = rhs.toExpression()
     return SingleConstraint(left: left, relation: .lessThanOrEqual, right: right)
 }
+
+precedencegroup CrowPriorityPrecedence {
+    lowerThan: ComparisonPrecedence
+    higherThan: LogicalConjunctionPrecedence
+}
+
+infix operator ~: CrowPriorityPrecedence
+
+public func ~ <AnchorType: Anchor>(lhs: SingleConstraint<AnchorType>, rhs: UILayoutPriority) -> SingleConstraint<AnchorType> {
+    return lhs.with(priority: rhs)
+}
+
+public func ~ <AnchorType: Anchor>(lhs: SingleConstraint<AnchorType>, rhs: Float) -> SingleConstraint<AnchorType> {
+    return lhs.with(priority: UILayoutPriority(rawValue: rhs))
+}

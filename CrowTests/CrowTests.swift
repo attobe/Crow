@@ -12,7 +12,7 @@ class CrowTests: XCTestCase {
             crow.left.right.top.bottom == view.crow.left.right.top.bottom - 1.0
         }
 
-        print((subview.crow.north.south == view.crow.north.south - 2.0
+        print((subview.crow.north.south == view.crow.north.south - 2.0 ~ .defaultHigh
             && subview.crow.edge == view.crow.edge).build())
 
         view.bounds.size = CGSize(width: 10.0, height: 10.0)
