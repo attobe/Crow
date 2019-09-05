@@ -19,6 +19,8 @@ public struct SingleConstraint<AnchorType: Anchor>: Constraint {
             op = ">="
         case .lessThanOrEqual:
             op = "<="
+        @unknown default:
+            op = "?"
         }
 
         let expr = "\(left) \(op) \(right)"

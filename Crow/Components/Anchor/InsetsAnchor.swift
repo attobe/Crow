@@ -5,11 +5,13 @@ extension NSLayoutConstraint.Relation {
     fileprivate var conversed: NSLayoutConstraint.Relation {
         switch self {
         case .equal:
-            return .equal
+            return self
         case .greaterThanOrEqual:
             return .lessThanOrEqual
         case .lessThanOrEqual:
             return .greaterThanOrEqual
+        @unknown default:
+            return self
         }
     }
 }
